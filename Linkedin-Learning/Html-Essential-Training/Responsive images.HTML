@@ -1,0 +1,98 @@
+<!-- #### Responsive images
+We can make several different files and list them as a set of options in our HTML and let the browser 
+decide which image to download. It can do so in coordination with the operating system 
+while taking the device hardware capabilities and the network speed into account as well.
+the pixel denisty of screen is 1X 2X 3X . The simplest way to support these different screens is to create 
+multiple copies of our image in different resolutions and then tell the browser that those copies are available. -->
+<!-- The aspect ratio is what's important here. And 480 by 360 calculates to a four by three aspect ratio. All of these
+photos are four by three. Now, -->
+<!-- let's add a source set attribute. Inside of it, we'll list the images that we are
+offering the browser as choices. It's a comma separated list. With a URL to a file, a space, the resolution, like 2X,
+3X, 4X, 1.5X, whatever, a comma, and the next one. Now, the browser will swap out one version of this image for another
+based on what it thinks is best. This is a great solution for providing different size images to handle retina and high
+DPI screens. -->
+
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog-480.jpg" alt="shiny black dog looking pensive"
+    width="480" height="360">
+<!-- these is a normal image without any altirnative images  -->
+
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog-480.jpg" alt="shiny black dog looking pensive"
+    width="480" height="360" srcset="https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog-960.jpg 2x, 
+	   	  	   https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog-1440.jpg 3x, 
+		 				 https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog-1920.jpg 4x">
+<!-- but these image has srcset attribute that has altirnative photos for different resolutions -->
+br
+<!-- let browser consider the width of the viewport and to choose a file based on the size of the screen as well as the
+density, instead of saying one x, two x, we'll tell the browser how wide each file is, 480w, 960w
+That means 480 pixels wide, 960 pixels wide. Now the browser will dynamically choose
+which image to display based on a combination of device density and viewport width. This is not going to pick the right
+size image for the layout that you have. It's choosing the image based on an assumption that you need the image to be
+100% of the viewport width. -->
+br
+<!-- system is designed to be fast and for the browser to make a decision about which image to download as early as possible
+in the page loading process. It chooses the image file before the CSS has been parsed and before layout has happened. -->
+br
+<!-- Srcset gives you two options for communicating to the browser that there are a set of images available to use. You
+can specify which images are for which resolution of screen, or you can indicate which image has how many pixels and let
+the browser choose an image based on the combination of screen density and viewport width. The sizes attribute gives you
+a way to specify for the browser how much of the viewport's width that image will take up at which break point. -->
+<!-- with replacing w with x you maintain the viewport is 100% width and in the same time change the resolution according to the size of screen its all about aspect ratio -->
+<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog-480.jpg" alt="shiny black dog looking pensive"
+    width="480" height="360" srcset="https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog-480.jpg  480w, 
+	   	  	   https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog-960.jpg  960w, 
+	   	  	   https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog-1440.jpg 1440w, 
+		 				 https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog-1920.jpg 1920w">
+
+<!-- What if we want to use a different image on a small screen versus a big screen? Maybe we want the image to be tall and
+narrow on mobile where it's short and wide on desktop. Or even use a completely different photo altogether.
+through picture element and still maintain the quality of resolution -->
+<picture>
+    <source media="(min-width:600px)" srcset="https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-320.jpg  320w,
+                    https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-480.jpg  480w, 
+                    https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-720.jpg  720w,
+                    https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-960.jpg  960w, 
+                    https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-1440.jpg 1440w, 
+                    https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-1920.jpg 1920w">
+    <source srcset="https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-cropped-320.jpg 320w,
+                    https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-cropped-480.jpg 480w, 
+                    https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-cropped-720.jpg 720w,
+                    https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-cropped-960.jpg 960w">
+    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-480.jpg" alt="smiling black dog" height="360px"
+        width="480px">
+</picture>
+<!-- to use caption to picture -->
+<figure>
+    <picture>
+        <img src="" alt="">
+    </picture>
+    <figcaption>Maggie the dog enjoys resting in a field, after a long day of chasing squirrels.
+    </figcaption>
+</figure>
+
+<figure>
+    <picture>
+        <source media="(min-width:600px)" srcset="https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-320.jpg  320w,
+                    https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-480.jpg  480w, 
+                    https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-720.jpg  720w,
+                    https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-960.jpg  960w, 
+                    https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-1440.jpg 1440w, 
+                    https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-1920.jpg 1920w">
+        <source srcset="https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-cropped-320.jpg 320w,
+                    https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-cropped-480.jpg 480w, 
+                    https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-cropped-720.jpg 720w,
+                    https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-cropped-960.jpg 960w">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-480.jpg" alt="smiling black dog"
+            height="360px" width="480px">
+    </picture>
+    <figcaption>Maggie the dog enjoys resting in a field, after a long day of chasing squirrels.
+    </figcaption>
+</figure>
+
+<!-- use a different photo on other size , screen  -->
+<picture>
+    <source media="(min-width:600px)" srcset="https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-720.jpg">
+    <source srcset="https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-cropped-320.jpg">
+    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/10558/dog2-480.jpg" width="480" height="360"
+        alt="black dog lying in the sun">
+</picture>
+
